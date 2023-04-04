@@ -112,4 +112,8 @@ public class MainCharacter {
         Rect enemyBound = enemy.getBounds();
         return Rect.intersects(characterBound, enemyBound);
     }
+
+    public float getX() {
+        return posX;
+    }
 }

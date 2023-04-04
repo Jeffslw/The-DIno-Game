@@ -27,7 +27,15 @@ public class CactusEnemy extends Enemy {
 
     @Override
     public void update() {
-        posX -= mainCharacter.getSpeedX();
+        // Calculate the new x-position based on the current speed and the elapsed time since the last update
+        int newX = (int) (posX - mainCharacter.getSpeedX());
+
+        // Update the enemy's x-position to the new position
+        setPosX(newX);
+    }
+
+    private void setPosX(int newX) {
+        this.posX = newX;
     }
 
     @Override

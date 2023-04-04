@@ -18,7 +18,7 @@ public class GameLogic {
 
         // Update the position of the enemies
         for (Enemy enemy : obstacles.getEnemies()) {
-            enemy.update();
+            enemy.update(mainCharacter.getX());
         }
 
         // Generate new enemies at random positions off-screen to the right
