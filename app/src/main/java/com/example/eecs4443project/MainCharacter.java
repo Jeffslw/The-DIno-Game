@@ -13,19 +13,16 @@ public class MainCharacter {
     public static final float GRAVITY = 0.4f;
     private static final int NORMAL_RUN = 0;
     private static final int JUMPING = 1;
-    private static final int DEATH = 3;
 
     private float posY;
     private float posX;
     private float speedX;
     private float speedY;
     private Rect rectBound;
-    public int score = 0;
     private int state = NORMAL_RUN;
 
     private AnimationDrawable normalRunAnim;
     private Bitmap jumping;
-    private Bitmap deathImage;
 
     public MainCharacter(Context context) {
         posX = 50;
@@ -35,7 +32,6 @@ public class MainCharacter {
         normalRunAnim.addFrame(context.getResources().getDrawable(R.drawable.mc1), 90);
         normalRunAnim.addFrame(context.getResources().getDrawable(R.drawable.mc2), 90);
         jumping = BitmapFactory.decodeResource(context.getResources(), R.drawable.mc3);
-        deathImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.mc4);
     }
 
     public float getSpeedX() {
@@ -55,9 +51,6 @@ public class MainCharacter {
                 break;
             case JUMPING:
                 canvas.drawBitmap(jumping, posX, posY, null);
-                break;
-            case DEATH:
-                canvas.drawBitmap(deathImage, posX, posY, null);
                 break;
         }
     }
@@ -92,14 +85,6 @@ public class MainCharacter {
         rectBound.right = (int) posX + normalRunAnim.getIntrinsicWidth() - 10;
         rectBound.bottom = (int) posY + normalRunAnim.getIntrinsicHeight();
         return rectBound;
-    }
-
-    public void dead(boolean isDeath) {
-        if(isDeath) {
-            state = DEATH;
-        } else {
-            state = NORMAL_RUN;
-        }
     }
 
     public boolean collidesWith(Enemy enemy) {
