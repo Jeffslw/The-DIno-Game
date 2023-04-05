@@ -52,5 +52,4 @@ public class Obstacles {
         }
     }
 
-    // other methods for updating, drawing, and checking collisions with enemies
 }

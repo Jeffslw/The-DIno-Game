@@ -36,6 +36,7 @@ public class GameView extends View {
         }
         for (Enemy enemy : obstacles.getEnemies()) {
             enemy.draw(canvas);
+            enemy.moveLeft();
         }
         invalidate(); //redraw the view
     }
