@@ -116,4 +116,8 @@ public class MainCharacter {
     public float getX() {
         return posX;
     }
+
+    public void moveRight() {
+        posX += 10; // move character 10 pixels to the right
+    }
 }

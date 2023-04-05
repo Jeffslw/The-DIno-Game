@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public abstract class Enemy {
-    private static final int ENEMY_SPEED = 5;
+    private static final int ENEMY_SPEED = 20;
     private Bitmap image;
     private int x, y;
 
@@ -16,10 +16,10 @@ public abstract class Enemy {
     }
 
     public void update(float mainCharacterX) {
-        float distance = mainCharacterX - x;
+      float distance = mainCharacterX - x;
         if (distance > 0) {
-            // move the enemy towards the main character
-            x += ENEMY_SPEED;
+         // move the enemy towards the main character
+           moveRight();
         }
     }
 
@@ -40,5 +40,9 @@ public abstract class Enemy {
 
     public float getX() {
         return x;
+    }
+
+    public void moveRight() {
+        x += ENEMY_SPEED;
     }
 }

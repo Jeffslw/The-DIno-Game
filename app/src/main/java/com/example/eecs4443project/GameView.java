@@ -23,6 +23,10 @@ public class GameView extends View {
         obstacles = new Obstacles(mainCharacter, context);
     }
 
+    public void setGameLogic(GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -33,6 +37,7 @@ public class GameView extends View {
         for (Enemy enemy : obstacles.getEnemies()) {
             enemy.draw(canvas);
         }
+        invalidate(); //redraw the view
     }
 
     public void setMainCharacter(MainCharacter mainCharacter) {
