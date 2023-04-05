@@ -19,7 +19,7 @@ public abstract class Enemy {
       float distance = mainCharacterX - x;
         if (distance > 0) {
          // move the enemy towards the main character
-           this.moveLeft();
+           moveLeft();
         }
     }
 
@@ -27,6 +27,7 @@ public abstract class Enemy {
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(image, x, y, null);
+        moveLeft();
     }
 
     public Rect getBounds() {
@@ -37,14 +38,11 @@ public abstract class Enemy {
         return x + image.getWidth() < 0;
     }
 
-
     public float getX() {
         return x;
     }
 
     public void moveLeft() {
-        System.out.println("Before: x = " + x);
         x -= ENEMY_SPEED;
-        System.out.println("After: x = " + x);
     }
 }

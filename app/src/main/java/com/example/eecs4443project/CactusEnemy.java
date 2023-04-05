@@ -10,8 +10,9 @@ public class CactusEnemy extends Enemy {
     private int height;
     private Bitmap image;
     private MainCharacter mainCharacter;
-
     private Rect rectBound;
+    private static final int ENEMY_SPEED = 5;
+    private int x;
 
     public static final int Y_LAND = 730;
 
@@ -30,6 +31,7 @@ public class CactusEnemy extends Enemy {
         // Calculate the new x-position based on the current speed and the elapsed time since the last update
         int newX = (int) (posX - mainCharacter.getSpeedX());
 
+        moveLeft();
         // Update the enemy's x-position to the new position
         setPosX(newX);
     }
@@ -41,6 +43,7 @@ public class CactusEnemy extends Enemy {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(image, posX, Y_LAND - image.getHeight(), null);
+        moveLeft();
     }
 
     @Override
@@ -58,5 +61,9 @@ public class CactusEnemy extends Enemy {
             return true;
         }
         return false;
+    }
+
+    public void moveLeft() {
+        posX -= ENEMY_SPEED;
     }
 }
