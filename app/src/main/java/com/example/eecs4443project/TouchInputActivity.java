@@ -11,16 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TouchInputActivity extends AppCompatActivity implements View.OnTouchListener {
 
-    private ImageView player, land;
-    private float playerX, playerY;
-    private float screenWidth, screenHeight;
-    private float touchX, touchY;
+    private ImageView land;
+
     private GameLogic gameLogic;
     private GameView gameView;
     private MainCharacter mainCharacter;
     private Obstacles obstacles;
     private boolean isJumping = false;
-    private boolean gameOver = false;
     private Handler handler = new Handler();
 
     @Override
@@ -39,12 +36,8 @@ public class TouchInputActivity extends AppCompatActivity implements View.OnTouc
         // Set touch listener on the gameView
         gameView.setOnTouchListener(this);
 
-        // Display land ImageView and the screen dimensions
+        // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenWidth = displayMetrics.widthPixels;
-        screenHeight = displayMetrics.heightPixels;
 
         // Set the floor image as the background of the floor ImageView
         land.setBackgroundResource(R.drawable.land);
