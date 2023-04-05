@@ -62,10 +62,12 @@ public class MainCharacter {
     }
 
     public void update() {
-        normalRunAnim.run();
+        if(state == NORMAL_RUN) {
+            normalRunAnim.run();
+        }
         if(posY >= LAND_POSY) {
             posY = LAND_POSY;
-            if(state != JUMPING) {
+            if(state == JUMPING) {
                 state = NORMAL_RUN;
             }
         } else {
@@ -76,7 +78,7 @@ public class MainCharacter {
 
     public void jump() {
         if(posY >= LAND_POSY) {
-            speedY = -11f;
+            speedY = -13f;
             posY += speedY;
             state = JUMPING;
         }

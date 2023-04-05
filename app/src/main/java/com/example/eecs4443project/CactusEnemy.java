@@ -11,8 +11,7 @@ public class CactusEnemy extends Enemy {
     private Bitmap image;
     private MainCharacter mainCharacter;
     private Rect rectBound;
-    private static final int ENEMY_SPEED = 5;
-    private int x;
+    private static final int ENEMY_SPEED = 4;
 
     public static final int Y_LAND = 730;
 
