@@ -51,6 +51,7 @@ public class MainCharacter {
             case NORMAL_RUN:
                 normalRunAnim.setBounds((int) posX, (int) posY, (int) posX + normalRunAnim.getIntrinsicWidth(), (int) posY + normalRunAnim.getIntrinsicHeight());
                 normalRunAnim.draw(canvas);
+                // moveRight(); // Makes dinosaur move right
                 break;
             case JUMPING:
                 canvas.drawBitmap(jumping, posX, posY, null);
@@ -99,14 +100,6 @@ public class MainCharacter {
         } else {
             state = NORMAL_RUN;
         }
-    }
-
-    public void reset() {
-        posY = LAND_POSY;
-    }
-
-    public void upScore() {
-        score += 20;
     }
 
     public boolean collidesWith(Enemy enemy) {

@@ -1,5 +1,7 @@
 package com.example.eecs4443project;
 
+import android.content.Intent;
+
 public class GameLogic {
     private Obstacles obstacles;
     private MainCharacter mainCharacter;
@@ -35,7 +37,10 @@ public class GameLogic {
     }
 
     public void endGame() {
-        // Display game over screen or dialog
+        // Display game over screen
+        Intent intent = new Intent(gameView.getContext(), ResultsActivity.class);
+        intent.putExtra("timeSurvived", Timer.getTimeSurvived());
+        gameView.getContext().startActivity(intent);
     }
 
     public void moveRight() {

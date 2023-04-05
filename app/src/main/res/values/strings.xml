@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">EECS4443Project</string>
-
+    <string name="time_survived">You survived for %1$d:%2$02d:%3$02d</string>
 </resources>

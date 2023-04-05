@@ -39,7 +39,7 @@ public class Obstacles {
     }
 
     public void generateNewEnemies(float lastEnemyX) {
-        float x = lastEnemyX + rand.nextInt(500) + 200; // random distance between 200 and 700 pixels
+        float x = lastEnemyX + rand.nextInt(500) + 500; // random distance between 500 and 1000 pixels
         addEnemy(x);
     }
 

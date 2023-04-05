@@ -25,7 +25,10 @@
             android:name="com.example.eecs4443project.TouchInputActivity"
             android:screenOrientation="sensorLandscape">
         </activity>
-
+        <activity
+            android:name="com.example.eecs4443project.ResultsActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
     </application>
 
 </manifest>

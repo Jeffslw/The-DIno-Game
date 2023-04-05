@@ -15,12 +15,14 @@ public class GameView extends View {
     private Obstacles obstacles;
     private Paint paint;
     private GameLogic gameLogic;
+    private Timer timer;
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         mainCharacter = new MainCharacter(context);
         obstacles = new Obstacles(mainCharacter, context);
+        timer = new Timer();
     }
 
     public void setGameLogic(GameLogic gameLogic) {
@@ -38,6 +40,8 @@ public class GameView extends View {
             enemy.draw(canvas);
             enemy.moveLeft();
         }
+        timer.update();
+        timer.draw(canvas);
         invalidate(); //redraw the view
     }
 
