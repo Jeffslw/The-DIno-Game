@@ -15,14 +15,6 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/land" />
 
-        <ImageView
-            android:id="@+id/characterImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/landImage"
-            android:layout_marginLeft="0dp"
-            android:src="@drawable/mc1" />
-
         <com.example.eecs4443project.GameView
             android:id="@+id/game_view"
             android:layout_width="match_parent"

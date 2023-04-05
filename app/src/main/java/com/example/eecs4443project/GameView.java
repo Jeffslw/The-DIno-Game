@@ -1,10 +1,12 @@
 package com.example.eecs4443project;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.zip.Adler32;
 
@@ -48,4 +50,5 @@ public class GameView extends View {
     public Obstacles getObstacles() {
         return obstacles;
     }
+
 }

@@ -35,16 +35,15 @@ public class TouchInputActivity extends AppCompatActivity implements View.OnTouc
         obstacles = gameView.getObstacles();
         gameLogic = new GameLogic(mainCharacter, obstacles, gameView);
 
-        // Get the player ImageView and the screen dimensions
-        player = (ImageView) findViewById(R.id.characterImage);
+        // Display land ImageView and the screen dimensions
         land = (ImageView) findViewById(R.id.landImage);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
 
-        // Set touch listener on the player ImageView
-        player.setOnTouchListener(this);
+        // Set touch listener on the gameView
+        gameView.setOnTouchListener(this);
 
         // Set the floor image as the background of the floor ImageView
         land.setBackgroundResource(R.drawable.land);

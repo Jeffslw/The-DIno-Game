@@ -13,7 +13,7 @@ public class CactusEnemy extends Enemy {
 
     private Rect rectBound;
 
-    public static final int Y_LAND = 125;
+    public static final int Y_LAND = 730;
 
     public CactusEnemy(MainCharacter mainCharacter, int posX, int width, int height, Bitmap image) {
         super(image, posX, Y_LAND - image.getHeight());

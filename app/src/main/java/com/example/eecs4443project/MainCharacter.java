@@ -9,7 +9,7 @@ import android.graphics.drawable.AnimationDrawable;
 
 public class MainCharacter {
 
-    public static final int LAND_POSY = 80;
+    public static final int LAND_POSY = 610;
     public static final float GRAVITY = 0.4f;
     private static final int NORMAL_RUN = 0;
     private static final int JUMPING = 1;
@@ -76,7 +76,7 @@ public class MainCharacter {
 
     public void jump() {
         if(posY >= LAND_POSY) {
-            speedY = -7.5f;
+            speedY = -11f;
             posY += speedY;
             state = JUMPING;
         }
