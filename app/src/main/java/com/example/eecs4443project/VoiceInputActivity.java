@@ -6,14 +6,21 @@ import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
+    final static String MYDEBUG = "MYDEBUG";
     private final static int DELAY = 100;
+    private static final int SPEECH_REQUEST_CODE = 0;
 
     private SpeechRecognizer speechRecognizer;
     private Intent recognizerIntent;
@@ -31,6 +38,8 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_input);
+
+        Log.i(MYDEBUG, "Got to VoiceInputActivity - onCreate");
 
         gameView = findViewById(R.id.game_view);
 
@@ -54,7 +63,6 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
             }
         });
 
-
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
 
@@ -77,18 +85,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     public void onReadyForSpeech(Bundle bundle) {}
 
     @Override
-    public void onBeginningOfSpeech() {
-        if (!isJumping) {
-            isJumping = true;
-            gameLogic.jump();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    isJumping = false;
-                }
-            }, DELAY);
-        }
-    }
+    public void onBeginningOfSpeech() {}
 
     @Override
     public void onRmsChanged(float v) {}
@@ -103,7 +100,21 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     public void onError(int i) {}
 
     @Override
-    public void onResults(Bundle bundle) {}
+    public void onResults(Bundle bundle) {
+        ArrayList<String> speechResults = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        if (speechResults != null && !speechResults.isEmpty()) {
+            if (!isJumping) {
+                isJumping = true;
+                gameLogic.jump();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isJumping = false;
+                    }
+                }, DELAY);
+            }
+        }
+    }
 
     @Override
     public void onPartialResults(Bundle bundle) {}
