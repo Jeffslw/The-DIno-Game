@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // ask for permission to use microphone
-        ActivityCompat.requestPermissions(this, new String[]{RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(this, new String[]{RECORD_AUDIO},
+                PackageManager.PERMISSION_GRANTED);
         initalize();
     }
 

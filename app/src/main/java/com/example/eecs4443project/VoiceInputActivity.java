@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
-    
+
     private final static int DELAY = 100;
 
     private SpeechRecognizer speechRecognizer;
