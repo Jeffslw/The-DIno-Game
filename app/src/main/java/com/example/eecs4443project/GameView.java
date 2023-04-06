@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.speech.SpeechRecognizer;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ public class GameView extends View {
     private Obstacles obstacles;
     private Paint paint;
     private GameLogic gameLogic;
+    private VoiceInputActivity voiceInput;
     private Timer timer;
 
     public GameView(Context context, AttributeSet attrs) {
@@ -27,6 +29,10 @@ public class GameView extends View {
 
     public void setGameLogic(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
+    }
+
+    public void setVoiceInput(VoiceInputActivity voice) {
+        this.voiceInput = voice;
     }
 
     @Override

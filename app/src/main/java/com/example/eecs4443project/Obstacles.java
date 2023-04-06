@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Obstacles {
 
-    private final static int ENEMY_DISTANCE = 500;
+    private final static int ENEMY_DISTANCE = 1500;
     private List<Enemy> enemies = new ArrayList<>();
     private MainCharacter mainCharacter;
     private Bitmap cactus1;
@@ -24,7 +24,7 @@ public class Obstacles {
         cactus2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.cactus2);
 
         // add the initial enemy to the list
-        addEnemy(rand.nextInt(ENEMY_DISTANCE) + 800);
+        addEnemy(rand.nextInt(ENEMY_DISTANCE) + 1500);
     }
 
     private void addEnemy(float x) {

@@ -1,6 +1,7 @@
 package com.example.eecs4443project;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -12,15 +13,17 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.Manifest.permission.RECORD_AUDIO;
 
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
     final static String MYDEBUG = "MYDEBUG";
     private final static int DELAY = 100;
-    private static final int SPEECH_REQUEST_CODE = 0;
 
     private SpeechRecognizer speechRecognizer;
     private Intent recognizerIntent;
@@ -39,6 +42,8 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_input);
 
+        ActivityCompat.requestPermissions(this, new String[]{RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
+
         Log.i(MYDEBUG, "Got to VoiceInputActivity - onCreate");
 
         gameView = findViewById(R.id.game_view);
@@ -56,12 +61,8 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
         // Set voice listener on the gameView (??????)
-        gameView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                speechRecognizer.startListening(recognizerIntent);
-            }
-        });
+        gameView.setVoiceInput(this);
+        Log.i(MYDEBUG, "SET");
 
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
@@ -102,7 +103,8 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     @Override
     public void onResults(Bundle bundle) {
         ArrayList<String> speechResults = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        if (speechResults != null && !speechResults.isEmpty()) {
+        if (speechResults != null) {
+            Log.i(MYDEBUG, "speechResults = " + speechResults);
             if (!isJumping) {
                 isJumping = true;
                 gameLogic.jump();
@@ -113,7 +115,9 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
                     }
                 }, DELAY);
             }
+            speechRecognizer.stopListening();
         }
+        speechRecognizer.startListening(recognizerIntent);
     }
 
     @Override
@@ -126,6 +130,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onStart() {
         super.onStart();
         speechRecognizer.setRecognitionListener(this);
+        speechRecognizer.startListening(recognizerIntent);
     }
 
     @Override
