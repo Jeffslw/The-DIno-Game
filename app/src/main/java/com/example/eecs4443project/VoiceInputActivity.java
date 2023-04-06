@@ -86,7 +86,18 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     public void onReadyForSpeech(Bundle bundle) {}
 
     @Override
-    public void onBeginningOfSpeech() {}
+    public void onBeginningOfSpeech() {
+        if (!isJumping) {
+            isJumping = true;
+            gameLogic.jump();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    isJumping = false;
+                }
+            }, DELAY);
+        }
+    }
 
     @Override
     public void onRmsChanged(float v) {}
@@ -102,21 +113,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
 
     @Override
     public void onResults(Bundle bundle) {
-        ArrayList<String> speechResults = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        if (speechResults != null) {
-            Log.i(MYDEBUG, "speechResults = " + speechResults);
-            if (!isJumping) {
-                isJumping = true;
-                gameLogic.jump();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isJumping = false;
-                    }
-                }, DELAY);
-            }
-            speechRecognizer.stopListening();
-        }
+        speechRecognizer.stopListening();
         speechRecognizer.startListening(recognizerIntent);
     }
 

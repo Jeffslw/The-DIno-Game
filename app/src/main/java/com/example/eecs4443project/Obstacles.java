@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class Obstacles {
 
-    private final static int ENEMY_DISTANCE = 1500;
-    private final static int ENEMY_DISTANCE_FROM_DINO = 1500;
+    private final static int ENEMY_DISTANCE = 800;
+    private final static int ENEMY_DISTANCE_FROM_DINO = 800;
     private List<Enemy> enemies = new ArrayList<>();
     private MainCharacter mainCharacter;
     private Bitmap cactus1;
