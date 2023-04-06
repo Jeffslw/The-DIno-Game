@@ -1,8 +1,12 @@
 package com.example.eecs4443project;
 
+import static android.Manifest.permission.RECORD_AUDIO;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import static android.Manifest.permission.RECORD_AUDIO;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,8 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initalize();
 
+        // ask for permission to use microphone
+        ActivityCompat.requestPermissions(this, new String[]{RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
+        initalize();
     }
 
     private void initalize() {

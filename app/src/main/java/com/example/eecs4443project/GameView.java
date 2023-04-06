@@ -31,7 +31,12 @@ public class GameView extends View {
         this.gameLogic = gameLogic;
     }
 
-    public void setVoiceInput(VoiceInputActivity voice) {
+    /**
+     * Set a voice listener.
+     *
+     * @param voice
+     */
+    public void setVoiceListener(VoiceInputActivity voice) {
         this.voiceInput = voice;
     }
 

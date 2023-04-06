@@ -18,11 +18,8 @@ import androidx.core.app.ActivityCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.Manifest.permission.RECORD_AUDIO;
-
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
-    final static String MYDEBUG = "MYDEBUG";
     private final static int DELAY = 100;
 
     private SpeechRecognizer speechRecognizer;
@@ -42,10 +39,6 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_input);
 
-        ActivityCompat.requestPermissions(this, new String[]{RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
-
-        Log.i(MYDEBUG, "Got to VoiceInputActivity - onCreate");
-
         gameView = findViewById(R.id.game_view);
 
         // Create GameLogic instance and set it on the GameView
@@ -60,9 +53,8 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
-        // Set voice listener on the gameView (??????)
-        gameView.setVoiceInput(this);
-        Log.i(MYDEBUG, "SET");
+        // Set voice listener on the gameView
+        gameView.setVoiceListener(this);
 
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
@@ -87,6 +79,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
 
     @Override
     public void onBeginningOfSpeech() {
+        // jump as soon as you hear speech (like the word "jump")
         if (!isJumping) {
             isJumping = true;
             gameLogic.jump();
@@ -113,6 +106,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
 
     @Override
     public void onResults(Bundle bundle) {
+        // need to do this to get continuous words/phrases. else it'll only capture a sentence/word.
         speechRecognizer.stopListening();
         speechRecognizer.startListening(recognizerIntent);
     }
@@ -127,13 +121,13 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onStart() {
         super.onStart();
         speechRecognizer.setRecognitionListener(this);
-        speechRecognizer.startListening(recognizerIntent);
+        speechRecognizer.startListening(recognizerIntent); // start listening when activity starts
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        speechRecognizer.stopListening();
+        speechRecognizer.stopListening(); // stop listening when activity stops
         speechRecognizer.destroy();
     }
 }
