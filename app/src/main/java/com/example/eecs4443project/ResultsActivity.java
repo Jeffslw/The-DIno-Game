@@ -17,6 +17,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         // Retrieve the timeSurvived value from the Intent
         long timeSurvived = getIntent().getLongExtra("timeSurvived", 0);
+        int gameType = getIntent().getIntExtra("gameType", -1);
 
         // Format the timeSurvived value as a string
         String timeSurvivedString = String.format(getString(R.string.time_survived),
@@ -33,8 +34,13 @@ public class ResultsActivity extends AppCompatActivity {
         tryAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultsActivity.this, TouchInputActivity.class);
-                startActivity(intent);
+                if (gameType == GameLogic.TOUCH_INPUT) {
+                    Intent intent = new Intent(ResultsActivity.this, TouchInputActivity.class);
+                    startActivity(intent);
+                } else if (gameType == GameLogic.TOUCH_INPUT) {
+                    Intent intent = new Intent(ResultsActivity.this, VoiceInputActivity.class);
+                    startActivity(intent);
+                }
                 finish();
             }
         });

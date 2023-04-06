@@ -3,16 +3,22 @@ package com.example.eecs4443project;
 import android.content.Intent;
 
 public class GameLogic {
+
+    protected final static int TOUCH_INPUT = 0;
+    protected final static int VOICE_INPUT = 1;
+
     private Obstacles obstacles;
     private MainCharacter mainCharacter;
     private GameView gameView;
+    private int gameType;
 
-    public GameLogic(MainCharacter mainCharacter, Obstacles obstacles, GameView gameView) {
+    public GameLogic(MainCharacter mainCharacter, Obstacles obstacles, GameView gameView, int gameType) {
         this.mainCharacter = mainCharacter;
         this.obstacles = obstacles;
         this.gameView = gameView;
         this.gameView.setMainCharacter(mainCharacter);
         this.gameView.setObstacles(obstacles);
+        this.gameType = gameType; // -> either TOUCH_INPUT or VOICE_INPUT
     }
     public void update() {
         // Update the position of the main character
@@ -40,6 +46,7 @@ public class GameLogic {
         // Display game over screen
         Intent intent = new Intent(gameView.getContext(), ResultsActivity.class);
         intent.putExtra("timeSurvived", Timer.getTimeSurvived());
+        intent.putExtra("gameType", gameType);
         gameView.getContext().startActivity(intent);
     }
 

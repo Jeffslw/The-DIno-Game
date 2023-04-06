@@ -30,7 +30,7 @@ public class TouchInputActivity extends AppCompatActivity implements View.OnTouc
         // Create GameLogic instance and set it on the GameView
         mainCharacter = gameView.getMainCharacter();
         obstacles = gameView.getObstacles();
-        gameLogic = new GameLogic(mainCharacter, obstacles, gameView);
+        gameLogic = new GameLogic(mainCharacter, obstacles, gameView, GameLogic.TOUCH_INPUT);
         gameView.setGameLogic(gameLogic);
 
         // Set touch listener on the gameView

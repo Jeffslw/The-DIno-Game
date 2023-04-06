@@ -44,7 +44,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         // Create GameLogic instance and set it on the GameView
         mainCharacter = gameView.getMainCharacter();
         obstacles = gameView.getObstacles();
-        gameLogic = new GameLogic(mainCharacter, obstacles, gameView);
+        gameLogic = new GameLogic(mainCharacter, obstacles, gameView, GameLogic.VOICE_INPUT);
         gameView.setGameLogic(gameLogic);
 
         // Create the SpeechRecognizer and the RecognizerIntent
