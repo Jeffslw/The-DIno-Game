@@ -1,8 +1,10 @@
 package com.example.eecs4443project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,7 +13,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
+    private final static int DELAY = 100;
+
     private SpeechRecognizer speechRecognizer;
+    private Intent recognizerIntent;
+
     private ImageView land;
 
     private GameLogic gameLogic;
@@ -34,9 +40,14 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         gameLogic = new GameLogic(mainCharacter, obstacles, gameView);
         gameView.setGameLogic(gameLogic);
 
-        // Set touch listener on the gameView
-        //gameView.setOnTouchListener(this);
+        // Create the SpeechRecognizer and the RecognizerIntent
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        // Set voice listener on the gameView (??????) and start listening
+        //gameView.set
 
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
@@ -56,11 +67,12 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         }
     };
 
-    /*
-    // Just change this part with the voice input recognition
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && !isJumping) {
+    public void onReadyForSpeech(Bundle bundle) {}
+
+    @Override
+    public void onBeginningOfSpeech() {
+        if (!isJumping) {
             isJumping = true;
             gameLogic.jump();
             new Handler().postDelayed(new Runnable() {
@@ -68,53 +80,42 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
                 public void run() {
                     isJumping = false;
                 }
-            }, 1000);
+            }, DELAY);
         }
-        return true;
-    }
-*/
-    @Override
-    public void onReadyForSpeech(Bundle bundle) {
-
     }
 
     @Override
-    public void onBeginningOfSpeech() {
+    public void onRmsChanged(float v) {}
 
+    @Override
+    public void onBufferReceived(byte[] bytes) {}
+
+    @Override
+    public void onEndOfSpeech() {}
+
+    @Override
+    public void onError(int i) {}
+
+    @Override
+    public void onResults(Bundle bundle) {}
+
+    @Override
+    public void onPartialResults(Bundle bundle) {}
+
+    @Override
+    public void onEvent(int i, Bundle bundle) {}
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        speechRecognizer.setRecognitionListener(this);
+        speechRecognizer.startListening(recognizerIntent);
     }
 
     @Override
-    public void onRmsChanged(float v) {
-
-    }
-
-    @Override
-    public void onBufferReceived(byte[] bytes) {
-
-    }
-
-    @Override
-    public void onEndOfSpeech() {
-
-    }
-
-    @Override
-    public void onError(int i) {
-
-    }
-
-    @Override
-    public void onResults(Bundle bundle) {
-
-    }
-
-    @Override
-    public void onPartialResults(Bundle bundle) {
-
-    }
-
-    @Override
-    public void onEvent(int i, Bundle bundle) {
-
+    protected void onStop() {
+        super.onStop();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
     }
 }
