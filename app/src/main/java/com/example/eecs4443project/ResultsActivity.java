@@ -37,7 +37,7 @@ public class ResultsActivity extends AppCompatActivity {
                 if (gameType == GameLogic.TOUCH_INPUT) {
                     Intent intent = new Intent(ResultsActivity.this, TouchInputActivity.class);
                     startActivity(intent);
-                } else if (gameType == GameLogic.TOUCH_INPUT) {
+                } else if (gameType == GameLogic.VOICE_INPUT) {
                     Intent intent = new Intent(ResultsActivity.this, VoiceInputActivity.class);
                     startActivity(intent);
                 }

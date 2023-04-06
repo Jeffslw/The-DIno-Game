@@ -20,6 +20,7 @@ import java.util.List;
 
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
+    final static String MYDEBUG = "MYDEBUG";
     private final static int DELAY = 100;
 
     private SpeechRecognizer speechRecognizer;
@@ -38,6 +39,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_input);
+        Log.i(MYDEBUG, "Got here! (VoiceInputActivity - onCreate)");
 
         gameView = findViewById(R.id.game_view);
 
