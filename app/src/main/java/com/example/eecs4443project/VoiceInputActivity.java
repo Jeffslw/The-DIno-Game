@@ -2,13 +2,16 @@ package com.example.eecs4443project;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognitionListener;
+import android.speech.SpeechRecognizer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-public class VoiceInputActivity extends AppCompatActivity implements View.OnTouchListener {
+public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
 
+    private SpeechRecognizer speechRecognizer;
     private ImageView land;
 
     private GameLogic gameLogic;
@@ -32,7 +35,8 @@ public class VoiceInputActivity extends AppCompatActivity implements View.OnTouc
         gameView.setGameLogic(gameLogic);
 
         // Set touch listener on the gameView
-        gameView.setOnTouchListener(this);
+        //gameView.setOnTouchListener(this);
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
@@ -52,6 +56,7 @@ public class VoiceInputActivity extends AppCompatActivity implements View.OnTouc
         }
     };
 
+    /*
     // Just change this part with the voice input recognition
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -66,5 +71,50 @@ public class VoiceInputActivity extends AppCompatActivity implements View.OnTouc
             }, 1000);
         }
         return true;
+    }
+*/
+    @Override
+    public void onReadyForSpeech(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onBeginningOfSpeech() {
+
+    }
+
+    @Override
+    public void onRmsChanged(float v) {
+
+    }
+
+    @Override
+    public void onBufferReceived(byte[] bytes) {
+
+    }
+
+    @Override
+    public void onEndOfSpeech() {
+
+    }
+
+    @Override
+    public void onError(int i) {
+
+    }
+
+    @Override
+    public void onResults(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onPartialResults(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onEvent(int i, Bundle bundle) {
+
     }
 }

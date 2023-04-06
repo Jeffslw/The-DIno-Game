@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Obstacles {
 
-    final static int ENEMY_DISTANCE = 1200;
+    private final static int ENEMY_DISTANCE = 500;
     private List<Enemy> enemies = new ArrayList<>();
     private MainCharacter mainCharacter;
     private Bitmap cactus1;

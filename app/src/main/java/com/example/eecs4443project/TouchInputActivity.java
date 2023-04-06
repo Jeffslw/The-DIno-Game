@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TouchInputActivity extends AppCompatActivity implements View.OnTouchListener {
 
+    private final static int DELAY = 100;
     private ImageView land;
 
     private GameLogic gameLogic;
@@ -63,7 +64,7 @@ public class TouchInputActivity extends AppCompatActivity implements View.OnTouc
                 public void run() {
                     isJumping = false;
                 }
-            }, 1000);
+            }, DELAY);
         }
         return true;
     }
