@@ -46,8 +46,14 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
-        // Set voice listener on the gameView (??????) and start listening
-        //gameView.set
+        // Set voice listener on the gameView (??????)
+        gameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speechRecognizer.startListening(recognizerIntent);
+            }
+        });
+
 
         // Display land ImageView
         land = (ImageView) findViewById(R.id.landImage);
@@ -109,7 +115,6 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onStart() {
         super.onStart();
         speechRecognizer.setRecognitionListener(this);
-        speechRecognizer.startListening(recognizerIntent);
     }
 
     @Override
