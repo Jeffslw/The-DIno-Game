@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoiceInputActivity extends AppCompatActivity implements RecognitionListener {
-
-    final static String MYDEBUG = "MYDEBUG";
+    
     private final static int DELAY = 100;
 
     private SpeechRecognizer speechRecognizer;
@@ -39,7 +38,6 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touch_input);
-        Log.i(MYDEBUG, "Got here! (VoiceInputActivity - onCreate)");
 
         gameView = findViewById(R.id.game_view);
 
@@ -108,7 +106,7 @@ public class VoiceInputActivity extends AppCompatActivity implements Recognition
 
     @Override
     public void onResults(Bundle bundle) {
-        // need to do this to get continuous words/phrases. else it'll only capture a sentence/word.
+        // need to do this to get continuous inputs. else it'll only capture a sentence/word.
         speechRecognizer.stopListening();
         speechRecognizer.startListening(recognizerIntent);
     }
