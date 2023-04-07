@@ -1,18 +1,33 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="-50dp"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".MainActivity" >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/mc3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to the Dino Game"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose your input type:"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -27,6 +42,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:text="Voice Input" />
 
         <Button
@@ -34,7 +51,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:text="Touch Input" />
 
     </LinearLayout>
+
 </LinearLayout>
