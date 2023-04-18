@@ -17,6 +17,11 @@ import android.widget.TextView;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 
+/**
+ * EECS 4443 Project - Group Sierra
+ *
+ * Members: Talayeh Amiri Tokaldany, Alice Chai, Adrian Fearman, Jeff Wang
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button startVoiceBtn, startTouchBtn;
